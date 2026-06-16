@@ -23,9 +23,10 @@ def unslam(
     def check_tf(tf: TFMessage):
         return tf.header.frame_id == parent_frame and tf.child_frame_id == child_frame
 
-    with Reader(bagfile) as reader, Writer(
-        output, version=8, storage_plugin=storage
-    ) as writer:
+    with (
+        Reader(bagfile) as reader,
+        Writer(output, version=8, storage_plugin=storage) as writer,
+    ):
         # Filter out topics
         connections = [
             c for c in reader.connections if filter_regex.match(c.topic) is None

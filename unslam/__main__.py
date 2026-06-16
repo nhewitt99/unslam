@@ -1,20 +1,20 @@
 import argparse
-from unslam import unslam
+from unslam.unslam import unslam
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Filter SLAM topics and TF frames from a rosbag."
+        description="Filter topics and TF frames from a rosbag."
     )
     parser.add_argument("bagfile", help="Path to the input bag file")
     parser.add_argument(
         "--output",
         default="out",
-        help="Path for the output bag file (default: %(default)r)"
+        help="Path for the output bag file (default: %(default)r)",
     )
     parser.add_argument(
         "--filter",
-        default=r"\/map$|\/slam_toolbox.*",
+        default=r"\/map$",
         help="Regex to exclude topics (default: %(default)r)",
     )
     parser.add_argument(
@@ -24,7 +24,7 @@ def main():
     )
     parser.add_argument(
         "--child-frame",
-        default="vision",
+        default="odom",
         help="Child TF frame to filter out (default: %(default)s)",
     )
     parser.add_argument(
