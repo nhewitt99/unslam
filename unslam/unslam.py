@@ -10,9 +10,9 @@ TFMessage = dashing.tf2_msgs__msg__TFMessage
 def unslam(
     bagfile: str,
     output: str,
-    filter: str = r"\/map$|\/slam_toolbox.*",
+    filter: str = r"\/map$",
     parent_frame: str = "map",
-    child_frame: str = "vision",
+    child_frame: str = "odom",
     version: str = "ros2_humble",
 ):
     filter_regex = re.compile(filter)
